@@ -1,0 +1,227 @@
+/* Base Layout */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f2e8d5;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    padding: 16px 24px;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #1e293b;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.header p {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+#canvas-container {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+#canvas-container:active {
+    cursor: grabbing;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Nodes */
+.node {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Node Hover - Removed erratic transform */
+.node:hover .card-bg {
+    stroke: #94a3b8;
+    /* Subtle highlight on hover instead of movement */
+    stroke-width: 2px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 32px;
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: scale(0.95);
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #64748b;
+    padding: 8px;
+    line-height: 1;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.close-btn:hover {
+    background: #f1f5f9;
+}
+
+.profile-image-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.initials-placeholder {
+    font-size: 36px;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-body h2 {
+    margin: 0;
+    text-align: center;
+    color: #1e293b;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.card-bg {
+    fill: white;
+    filter: drop-shadow(0 4px 6px -1px rgba(0, 0, 0, 0.1));
+    stroke: #e2e8f0;
+    stroke-width: 1px;
+}
+
+/* Family Specific Styles */
+.family-chu .card-bg {
+    stroke: #3b82f6;
+    /* Blue for Chu */
+    stroke-width: 2px;
+}
+
+.family-tong .card-bg {
+    stroke: #ef4444;
+    /* Red for Tong */
+    stroke-width: 2px;
+}
+
+.family-to .card-bg {
+    stroke: #10b981;
+    /* Green for To */
+    stroke-width: 2px;
+}
+
+/* Family Labels */
+.family-label {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 16px;
+    fill: #64748b;
+}
+
+/* Edges */
+.edge {
+    fill: none;
+    stroke: #cbd5e1;
+    stroke-width: 4px;
+}
+
+.edge.partner {
+    stroke-dasharray: 8 8;
+}
+
+/* Text */
+.name-label {
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 700;
+    fill: #1e293b;
+}
